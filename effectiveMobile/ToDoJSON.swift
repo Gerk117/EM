@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct TodoResponse: Codable {
-    let todos: [Todo]
+struct ToDoJSON : Codable {
+    let todos : [ToDo]
+}
 
-    struct Todo: Codable {
-        let id: Int
-        let todo: String
-        let completed: Bool
-        let userId: Int
-    }
+struct ToDo: Codable {
+    let id: Int
+    var todo: String
+    let completed: Bool
+    let userId: Int
 }

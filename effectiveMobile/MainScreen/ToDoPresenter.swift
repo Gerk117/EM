@@ -7,18 +7,42 @@
 
 import Foundation
 
-final class ToDoPresenter {
+protocol ToDoPresenterProtocol {
+    func loadData()
+    func updateView()
+    func changeName(at index : IndexPath,newName : String)
+    var dataResult : [ToDo] {get}
+}
+
+final class ToDoPresenter : ToDoPresenterProtocol {
+   
+    var dataResult: [ToDo] {
+        toDoData
+    }
     
-    private weak var view : ToDoView?
+    private var toDoService : LoadToDoService = ToDoService()
+    private var toDoData = [ToDo]()
+    private weak var view : ToDoViewProtocol?
     
     init(view: ToDoView) {
         self.view = view
     }
     
-    func lolkek(){
-        print(Int.random(in: 1...10))
+    func loadData(){
+        DispatchQueue.main.async {
+            self.toDoService.loadToDo {
+                self.toDoData = $0
+                self.updateView()
+            }
+        }
     }
     
-}
+    func updateView(){
+        view?.updateTable()
+    }
 
-// "https://dummyjson.com/todos"
+    func changeName(at index : IndexPath,newName : String){
+        toDoData[index.row].todo = newName
+        updateView()
+    }
+}

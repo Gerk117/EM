@@ -17,6 +17,7 @@
 		C7EAC3E92C79814400756985 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7EAC3E82C79814400756985 /* Assets.xcassets */; };
 		C7EAC3EC2C79814400756985 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = C7EAC3EB2C79814400756985 /* Base */; };
 		C7F8065A2C7CEE0B0023FAAC /* ToDoJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F806592C7CEE0B0023FAAC /* ToDoJSON.swift */; };
+		C7F8065E2C7CFABB0023FAAC /* ToDoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F8065D2C7CFABB0023FAAC /* ToDoService.swift */; };
 		E10C2069B1561CA30F20C6AA /* Pods_effectiveMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE4EC840A6100D95771D779 /* Pods_effectiveMobile.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +37,7 @@
 		C7EAC3EB2C79814400756985 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C7EAC3ED2C79814400756985 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7F806592C7CEE0B0023FAAC /* ToDoJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoJSON.swift; sourceTree = "<group>"; };
+		C7F8065D2C7CFABB0023FAAC /* ToDoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 			children = (
 				C7EAC3E02C79814300756985 /* ToDoView.swift */,
 				C7514E7B2C7CD9CB005B76F4 /* ToDoPresenter.swift */,
+				C7F8065D2C7CFABB0023FAAC /* ToDoService.swift */,
 			);
 			path = MainScreen;
 			sourceTree = "<group>";
@@ -97,11 +100,11 @@
 		C7EAC3DB2C79814300756985 /* effectiveMobile */ = {
 			isa = PBXGroup;
 			children = (
-				C7F806592C7CEE0B0023FAAC /* ToDoJSON.swift */,
-				C7514E7A2C7CD9B6005B76F4 /* MainScreen */,
 				C7EAC3DC2C79814300756985 /* AppDelegate.swift */,
 				C7EAC3DE2C79814300756985 /* SceneDelegate.swift */,
+				C7514E7A2C7CD9B6005B76F4 /* MainScreen */,
 				C7AA84E92C7ADAF000144C12 /* ToDoCell.swift */,
+				C7F806592C7CEE0B0023FAAC /* ToDoJSON.swift */,
 				C7EAC3E22C79814300756985 /* Main.storyboard */,
 				C7EAC3E82C79814400756985 /* Assets.xcassets */,
 				C7EAC3EA2C79814400756985 /* LaunchScreen.storyboard */,
@@ -229,6 +232,7 @@
 				C7F8065A2C7CEE0B0023FAAC /* ToDoJSON.swift in Sources */,
 				C7EAC3E12C79814300756985 /* ToDoView.swift in Sources */,
 				C7EAC3E72C79814300756985 /* effectiveMobile.xcdatamodeld in Sources */,
+				C7F8065E2C7CFABB0023FAAC /* ToDoService.swift in Sources */,
 				C7EAC3DD2C79814300756985 /* AppDelegate.swift in Sources */,
 				C7EAC3DF2C79814300756985 /* SceneDelegate.swift in Sources */,
 				C7514E7C2C7CD9CB005B76F4 /* ToDoPresenter.swift in Sources */,
