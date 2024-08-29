@@ -13,7 +13,7 @@ struct ToDoJSON : Codable {
 
 struct ToDo: Codable {
     let id: Int
-    var todo: String
+    let todo: String
     let completed: Bool
     let userId: Int
 }
