@@ -40,6 +40,7 @@ final class ToDoView: UIViewController, ToDoViewProtocol {
         button.layer.shadowOffset = CGSize(width: 2, height: 2)
         button.layer.shadowRadius = 4
         button.setImage(UIImage(systemName: "plus"), for: .normal)
+        button.setPreferredSymbolConfiguration(.init(pointSize: 30), forImageIn: .normal)
         button.addAction(UIAction(handler: { _ in
             let alert = UIAlertController(title: "Новая Задача", message: nil, preferredStyle: .alert)
             alert.addTextField()
@@ -67,9 +68,7 @@ final class ToDoView: UIViewController, ToDoViewProtocol {
     }
     
     func updateTable() {
-        DispatchQueue.main.async {
-            self.table.reloadData()
-        }
+        self.table.reloadData()
     }
     
     func reloadRow(index:IndexPath) {
@@ -128,16 +127,8 @@ extension ToDoView : UITableViewDataSource , UITableViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let currentOffset = scrollView.contentOffset.y
-        if currentOffset > lastContentOffset {
-            addButton.isHidden = true
-        } else {
-            addButton.isHidden = false
-        }
+        addButton.isHidden = currentOffset > lastContentOffset && currentOffset > 0
         lastContentOffset = currentOffset
-    }
-    
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        self.addButton.isHidden = true
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -154,10 +145,12 @@ extension ToDoView : UITableViewDataSource , UITableViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let currentOffset = scrollView.contentOffset.y
         if currentOffset < lastContentOffset {
-            addButton.isHidden = false
-            addButton.alpha = 0
-            UIView.animate(withDuration: 0.5) {
-                self.addButton.alpha = 1
+            if addButton.isHidden == true {
+                addButton.isHidden = false
+                addButton.alpha = 0
+                UIView.animate(withDuration: 0.5) {
+                    self.addButton.alpha = 1
+                }
             }
         }
     }

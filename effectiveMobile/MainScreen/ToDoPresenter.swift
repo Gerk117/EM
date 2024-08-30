@@ -35,8 +35,8 @@ final class ToDoPresenter : ToDoPresenterProtocol {
         if !UserDefaults.standard.bool(forKey: "firstLunch") {
             DispatchQueue.global().async {
                 self.toDoService.loadToDo {
-                    self.toDoData = $0
                     self.tasksCore.createDataTasks(models: $0)
+                    self.toDoData = self.tasksCore.returnToDoTasksModels()
                     self.updateTable()
                     DispatchQueue.main.async {
                         self.view?.removeIndicator()
@@ -65,7 +65,6 @@ final class ToDoPresenter : ToDoPresenterProtocol {
         let model = toDoData[index.row]
         DispatchQueue.global().async {
             self.tasksCore.changeTask(newTodoTask: task, taskId: model.id)
-            self.tasksCore.completeTask(taskId: model.id)
             self.toDoData = self.tasksCore.returnToDoTasksModels()
             DispatchQueue.main.async {
                 self.reloadRow(index: index)
@@ -84,13 +83,17 @@ final class ToDoPresenter : ToDoPresenterProtocol {
         }
     }
     
-    func createTask(todo:String){   
-        tasksCore.createNewTask(todo: todo)
-        toDoData = tasksCore.returnToDoTasksModels()
-        updateTable()
+    func createTask(todo:String){
+        DispatchQueue.global().async {
+            self.tasksCore.createNewTask(todo: todo)
+            self.toDoData = self.tasksCore.returnToDoTasksModels()
+            self.updateTable()
+        }
     }
     func updateTable() {
-        view?.updateTable()
+        DispatchQueue.main.async {
+            self.view?.updateTable()
+        }
     }
     
     func reloadRow(index: IndexPath) {
